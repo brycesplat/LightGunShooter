@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Camera/CameraComponent.h"
+#include <Components/SphereComponent.h>
 #include "LightGunShooterPlayer.generated.h"
 
 UCLASS()
@@ -26,4 +28,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+protected:
+	UPROPERTY(EditAnywhere)
+		class UCameraComponent* Camera;
+
+	UPROPERTY(EditAnywhere)
+		class USphereComponent* Hitbox;
 };
