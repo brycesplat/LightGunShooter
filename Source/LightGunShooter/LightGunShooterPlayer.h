@@ -34,4 +34,8 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 		class USphereComponent* Hitbox;
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	void Shoot(FVector2D Modifier, FHitResult& Hit, bool& Success);
 };

@@ -37,3 +37,28 @@ void ALightGunShooterPlayer::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 }
 
+void ALightGunShooterPlayer::Shoot(FVector2D Modifier, FHitResult& Result, bool& Success) {
+	APlayerController* ctrl = ALightGunShooterPlayer::GetController<APlayerController>();
+	if (ctrl == nullptr) {
+		Success = false;
+		return;
+	}
+
+	float x, y;
+	FHitResult Hit;
+
+	if (!(ctrl->GetMousePosition(x, y))) {
+		Success = false;
+		return;
+	}
+	Modifier.X += x;
+	Modifier.Y += y;
+	if (!(ctrl->GetHitResultAtScreenPosition(Modifier, ECC_Visibility, true, Hit))) {
+		Success = false;
+		return;
+	}
+
+	Result = Hit;
+	Success = true;
+	return;
+}
