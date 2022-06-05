@@ -36,6 +36,9 @@ protected:
 		class USphereComponent* Hitbox;
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "Mechanics")
-	void Shoot(FVector2D Modifier, FHitResult& Hit, bool& Success);
+	UFUNCTION(BlueprintCallable, Category = "Mechanics|Shoot")
+	void ShootFromScreenPosition(FVector2D Position, FHitResult& Hit, bool& Success);
+
+	UFUNCTION(BlueprintCallable, Category = "Mechanics|Misc")
+	void AddToMousePosition(FVector2D Modifier, FVector2D& Result, bool& Success);
 };

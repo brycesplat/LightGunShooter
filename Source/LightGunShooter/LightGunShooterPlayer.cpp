@@ -37,7 +37,26 @@ void ALightGunShooterPlayer::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 }
 
-void ALightGunShooterPlayer::Shoot(FVector2D Modifier, FHitResult& Result, bool& Success) {
+void ALightGunShooterPlayer::ShootFromScreenPosition(FVector2D Position, FHitResult& Result, bool& Success) {
+	APlayerController* ctrl = ALightGunShooterPlayer::GetController<APlayerController>();
+	if (ctrl == nullptr) {
+		Success = false;
+		return;
+	}
+
+	FHitResult Hit;
+
+	if (!(ctrl->GetHitResultAtScreenPosition(Position, ECC_Visibility, true, Hit))) {
+		Success = false;
+		return;
+	}
+
+	Result = Hit;
+	Success = true;
+	return;
+}
+
+void ALightGunShooterPlayer::AddToMousePosition(FVector2D Modifier, FVector2D& Result, bool& Success) {
 	APlayerController* ctrl = ALightGunShooterPlayer::GetController<APlayerController>();
 	if (ctrl == nullptr) {
 		Success = false;
@@ -45,20 +64,11 @@ void ALightGunShooterPlayer::Shoot(FVector2D Modifier, FHitResult& Result, bool&
 	}
 
 	float x, y;
-	FHitResult Hit;
-
-	if (!(ctrl->GetMousePosition(x, y))) {
-		Success = false;
-		return;
-	}
+	ctrl->GetMousePosition(x, y);
 	Modifier.X += x;
 	Modifier.Y += y;
-	if (!(ctrl->GetHitResultAtScreenPosition(Modifier, ECC_Visibility, true, Hit))) {
-		Success = false;
-		return;
-	}
 
-	Result = Hit;
 	Success = true;
+	Result = Modifier;
 	return;
 }
