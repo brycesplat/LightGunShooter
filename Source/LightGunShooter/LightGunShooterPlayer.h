@@ -28,6 +28,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+public:
+	UPROPERTY(BlueprintReadWrite)
+	uint8 Health;
+
 protected:
 	UPROPERTY(EditAnywhere)
 		class UCameraComponent* Camera;
@@ -36,9 +40,7 @@ protected:
 		class USphereComponent* Hitbox;
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "Mechanics|Shoot")
-	void ShootFromScreenPosition(FVector2D Position, FHitResult& Hit, bool& Success);
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	bool ShootFromScreenPosition(FVector2D Position, FHitResult& Hit);
 
-	UFUNCTION(BlueprintCallable, Category = "Mechanics|Misc")
-	void AddToMousePosition(FVector2D Modifier, FVector2D& Result, bool& Success);
 };
