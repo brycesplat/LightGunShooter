@@ -14,6 +14,9 @@ ALightGunShooterPlayer::ALightGunShooterPlayer()
 
 	Camera->SetupAttachment(RootComponent);
 	Hitbox->SetupAttachment(Camera);
+
+	Health = 3;
+	CurrentGun = "INSERT SOMETHING HERE!";
 }
 
 // Called when the game starts or when spawned
@@ -51,4 +54,21 @@ bool ALightGunShooterPlayer::ShootFromScreenPosition(FVector2D Position, FHitRes
 
 	Result = Hit;
 	return true;
+}
+
+void ALightGunShooterPlayer::Refill(FString Key, int Ammo) {
+	(**(Guns.Find(Key))).AmmoCount += Ammo;
+}
+
+//TODO: DamageHealth should check if player dies.
+int ALightGunShooterPlayer::DamageHealth(uint8 Damage) {
+	return Health;
+}
+
+void ALightGunShooterPlayer::AddHealth(uint8 Heal) {
+	if (Health + Heal > 255) {
+		Health = 255;
+		return;
+	}
+	Health += Heal;
 }

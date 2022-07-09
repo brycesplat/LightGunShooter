@@ -26,6 +26,11 @@ void ALightGunShooter_GunBase::Tick(float DeltaTime)
 }
 
 void ALightGunShooter_GunBase::Reload() {
+	if (LimitedAmmo) {
+		CurrentAmmoCount = MaxClipCount;
+		return;
+	}
+
 	int missing = MaxClipCount - CurrentAmmoCount;
 	if (missing == 0 || AmmoCount == 0) {
 		return;

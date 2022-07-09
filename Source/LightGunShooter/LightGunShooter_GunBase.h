@@ -12,16 +12,20 @@ class LIGHTGUNSHOOTER_API ALightGunShooter_GunBase : public AActor
 	GENERATED_BODY()
 	
 public:
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool LimitedAmmo;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	int CurrentAmmoCount;
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	int MaxClipCount;
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	int AmmoCount;
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float Damage;
-	UPROPERTY(BlueprintReadWrite)
-	TArray<FVector2D> Position;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TArray<FVector2D> Position {FVector2D {0,0}};
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FString Key;
 
 public:	
 	// Sets default values for this actor's properties

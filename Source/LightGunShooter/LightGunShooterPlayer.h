@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "Camera/CameraComponent.h"
 #include <Components/SphereComponent.h>
+#include "LightGunShooter_GunBase.h"
 #include "LightGunShooterPlayer.generated.h"
 
 UCLASS()
@@ -28,9 +29,13 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-public:
-	UPROPERTY(BlueprintReadWrite)
+protected:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	uint8 Health;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FString CurrentGun;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TMap<FString, ALightGunShooter_GunBase*> Guns;
 
 protected:
 	UPROPERTY(EditAnywhere)
@@ -42,5 +47,10 @@ protected:
 public:
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 	bool ShootFromScreenPosition(FVector2D Position, FHitResult& Hit);
-
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	void Refill(FString Key, int Ammo);
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	int DamageHealth(uint8 Damage);
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	void AddHealth(uint8 Heal);
 };
