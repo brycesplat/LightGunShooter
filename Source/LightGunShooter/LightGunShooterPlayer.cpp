@@ -16,7 +16,7 @@ ALightGunShooterPlayer::ALightGunShooterPlayer()
 	Hitbox->SetupAttachment(Camera);
 
 	Health = 3;
-	CurrentGun = "INSERT SOMETHING HERE!";
+	CurrentGun = 0;
 }
 
 // Called when the game starts or when spawned
@@ -46,22 +46,23 @@ bool ALightGunShooterPlayer::ShootFromScreenPosition(FVector2D Position, FHitRes
 		return false;
 	}
 
-	FHitResult Hit;
+	FHitResult hit;
 
-	if (!(ctrl->GetHitResultAtScreenPosition(Position, ECC_Visibility, true, Hit))) {
+	if (!(ctrl->GetHitResultAtScreenPosition(Position, ECC_Visibility, true, hit))) {
 		return false;
 	}
 
-	Result = Hit;
+	Result = hit;
 	return true;
 }
 
 void ALightGunShooterPlayer::Refill(FString Key, int Ammo) {
-	(**(Guns.Find(Key))).AmmoCount += Ammo;
+	(**(Guns.Find(Key))).ReserveAmmo += Ammo;
 }
 
-//TODO: DamageHealth should check if player dies.
+
 int ALightGunShooterPlayer::DamageHealth(uint8 Damage) {
+	Health -= Damage;
 	return Health;
 }
 
@@ -71,4 +72,40 @@ void ALightGunShooterPlayer::AddHealth(uint8 Heal) {
 		return;
 	}
 	Health += Heal;
+}
+
+void ALightGunShooterPlayer::EquipNewGun(ALightGunShooter_GunBase* NewGun) {
+	if (NewGun == nullptr) {
+		return;
+	}
+	Guns.Add(NewGun->Key, NewGun);
+	GunList.Add(1, NewGun->Key);
+	CurrentGun = 1;
+}
+
+void ALightGunShooterPlayer::EquipOldGun() {
+	if (CurrentGun == 0) {
+		return;
+	}
+	
+	Guns.Remove(GunList[CurrentGun]);
+	GunList.Remove(CurrentGun);
+	CurrentGun = 0;
+}
+
+void ALightGunShooterPlayer::SwapGuns(int NewGun) {
+	if (!GunList.Contains(NewGun)) {
+		return;
+	}
+	CurrentGun = NewGun;
+}
+
+void ALightGunShooterPlayer::SwapUpGuns() {
+	if (!GunList.Contains(++CurrentGun)) {
+		CurrentGun = 0;
+	}
+}
+
+ALightGunShooter_GunBase* ALightGunShooterPlayer::GetCurrentGun() {
+	return (Guns[GunList[CurrentGun]]);
 }

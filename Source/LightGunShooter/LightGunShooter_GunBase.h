@@ -15,13 +15,19 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool LimitedAmmo;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	int CurrentAmmoCount;
+	bool ChamberAmmo;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool Automatic;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int CurrentAmmo;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	int MaxClipCount;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	int AmmoCount;
+	int ReserveAmmo;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float Damage;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float RateOfFire;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<FVector2D> Position {FVector2D {0,0}};
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
@@ -41,4 +47,6 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Mechanics")
 	void Reload();
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	bool Shoot();
 };

@@ -33,9 +33,11 @@ protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	uint8 Health;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	FString CurrentGun;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TMap<FString, ALightGunShooter_GunBase*> Guns;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TMap<int, FString> GunList;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int CurrentGun;
 
 protected:
 	UPROPERTY(EditAnywhere)
@@ -53,4 +55,14 @@ public:
 	int DamageHealth(uint8 Damage);
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 	void AddHealth(uint8 Heal);
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	void EquipNewGun(ALightGunShooter_GunBase* NewGun);
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	void EquipOldGun();
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	void SwapGuns(int NewGun);
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	void SwapUpGuns();
+	UFUNCTION(BlueprintPure, Category = "Mechanics")
+	ALightGunShooter_GunBase* GetCurrentGun();
 };

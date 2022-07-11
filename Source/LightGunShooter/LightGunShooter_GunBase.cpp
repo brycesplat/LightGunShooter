@@ -25,24 +25,48 @@ void ALightGunShooter_GunBase::Tick(float DeltaTime)
 
 }
 
-void ALightGunShooter_GunBase::Reload() {
-	if (LimitedAmmo) {
-		CurrentAmmoCount = MaxClipCount;
+void ALightGunShooter_GunBase::Reload() {	
+	if (!LimitedAmmo) {
+		if (ChamberAmmo && CurrentAmmo > 0) {
+			CurrentAmmo = MaxClipCount + 1;
+			return;
+		}
+		CurrentAmmo = MaxClipCount;
 		return;
 	}
 
-	int missing = MaxClipCount - CurrentAmmoCount;
-	if (missing == 0 || AmmoCount == 0) {
+	if (ReserveAmmo <= 0) {
 		return;
 	}
-	else if (missing > AmmoCount) {
-		CurrentAmmoCount = AmmoCount;
-		AmmoCount = 0;
+
+	int missing = MaxClipCount - CurrentAmmo;
+	if (missing == 0) {
+		if (ChamberAmmo) {
+			CurrentAmmo++;
+			ReserveAmmo--;
+		}
+		return;
+	}
+	else if (missing < ReserveAmmo) {
+		if (ChamberAmmo && CurrentAmmo > 0) {
+			CurrentAmmo = MaxClipCount + 1;
+			ReserveAmmo -= missing + 1;
+			return;
+		}
+		CurrentAmmo = MaxClipCount;
+		ReserveAmmo -= missing;
 		return;
 	}
 	else {
-		CurrentAmmoCount = MaxClipCount;
-		AmmoCount -= missing;
-		return;
+		CurrentAmmo += ReserveAmmo;
+		ReserveAmmo = 0;
 	}
+}
+
+bool ALightGunShooter_GunBase::Shoot() {
+	if (CurrentAmmo > 0) {
+		CurrentAmmo--;
+		return true;
+	}
+	return false;
 }
