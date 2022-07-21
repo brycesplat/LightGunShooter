@@ -47,6 +47,7 @@ bool ALightGunShooterPlayer::ShootFromScreenPosition(FVector2D Position, FHitRes
 	}
 
 	FHitResult hit;
+	
 
 	if (!(ctrl->GetHitResultAtScreenPosition(Position, ECC_Visibility, true, hit))) {
 		return false;
@@ -108,4 +109,15 @@ void ALightGunShooterPlayer::SwapUpGuns() {
 
 ALightGunShooter_GunBase* ALightGunShooterPlayer::GetCurrentGun() {
 	return (Guns[GunList[CurrentGun]]);
+}
+
+void ALightGunShooterPlayer::AddGunToList(TSubclassOf<ALightGunShooter_GunBase> Gun) {
+	FActorSpawnParameters ActorSpawnParams;
+	ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	ActorSpawnParams.Owner = this;
+
+	ALightGunShooter_GunBase* spawn =  GetWorld()->SpawnActor<ALightGunShooter_GunBase>(Gun, FVector{0,0,0}, FRotator{0,0,0}, ActorSpawnParams);
+
+	Guns.Add(spawn->Key, spawn);
+	GunList.Add(GunList.Num(), spawn->Key);
 }

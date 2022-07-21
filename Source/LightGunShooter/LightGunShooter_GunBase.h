@@ -45,8 +45,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION(BlueprintCallable, Category="Mechanics")
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 	void Reload();
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
-	bool Shoot();
+	bool CheckAmmo();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Mechanics")
+	void FireGun();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Mechanics")
+	void StopFiringGun();
 };

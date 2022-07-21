@@ -65,4 +65,6 @@ public:
 	void SwapUpGuns();
 	UFUNCTION(BlueprintPure, Category = "Mechanics")
 	ALightGunShooter_GunBase* GetCurrentGun();
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	void AddGunToList(TSubclassOf<ALightGunShooter_GunBase> Gun);
 };

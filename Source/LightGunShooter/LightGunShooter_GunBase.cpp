@@ -63,10 +63,18 @@ void ALightGunShooter_GunBase::Reload() {
 	}
 }
 
-bool ALightGunShooter_GunBase::Shoot() {
+bool ALightGunShooter_GunBase::CheckAmmo() {
 	if (CurrentAmmo > 0) {
 		CurrentAmmo--;
 		return true;
 	}
 	return false;
+}
+
+void ALightGunShooter_GunBase::FireGun_Implementation() {
+	return;
+}
+
+void ALightGunShooter_GunBase::StopFiringGun_Implementation() {
+	return;
 }
