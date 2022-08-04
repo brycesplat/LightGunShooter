@@ -48,7 +48,7 @@ protected:
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
-	bool ShootFromScreenPosition(FVector2D Position, FHitResult& Hit);
+	bool ShootFromScreenPosition(FVector2D Position, ETraceTypeQuery TraceChannel, bool bTraceComplex, FHitResult& Hit);
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 	void Refill(FString Key, int Ammo);
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")

@@ -40,21 +40,23 @@ void ALightGunShooterPlayer::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 }
 
-bool ALightGunShooterPlayer::ShootFromScreenPosition(FVector2D Position, FHitResult& Result) {
+bool ALightGunShooterPlayer::ShootFromScreenPosition(FVector2D Position, ETraceTypeQuery TraceChannel, bool bTraceComplex, FHitResult& Result) {
 	APlayerController* ctrl = ALightGunShooterPlayer::GetController<APlayerController>();
 	if (ctrl == nullptr) {
 		return false;
 	}
-
-	FHitResult hit;
+	double mX, mY;
+	ctrl->GetMousePosition(mX, mY);
+	Position.X += mX;
+	Position.Y += mY;
+	bool bHit = false;
+	bHit = ctrl->GetHitResultAtScreenPosition(Position, TraceChannel, bTraceComplex, Result);
 	
 
-	if (!(ctrl->GetHitResultAtScreenPosition(Position, ECC_Visibility, true, hit))) {
-		return false;
+	if (!bHit) {
+		Result = FHitResult();
 	}
-
-	Result = hit;
-	return true;
+	return bHit;
 }
 
 void ALightGunShooterPlayer::Refill(FString Key, int Ammo) {

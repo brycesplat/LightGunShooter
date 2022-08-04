@@ -47,7 +47,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 	void Reload();
-	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	UFUNCTION(BlueprintPure, Category = "Mechanics")
 	bool CheckAmmo();
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Mechanics")
 	void FireGun();
