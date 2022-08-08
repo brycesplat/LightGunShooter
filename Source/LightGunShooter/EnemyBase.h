@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "LightGunShooter_GunBase.h"
 #include "EnemyBase.generated.h"
+
 
 UCLASS()
 class LIGHTGUNSHOOTER_API AEnemyBase : public ACharacter
@@ -26,4 +28,23 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+protected:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float Health;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int HitHealth;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int Hits;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float AttackChance;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TMap<FString, int> Drops;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool CanDropAmmo;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool healthBased;
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	void TakeDamage(float damage);
 };

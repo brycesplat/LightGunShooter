@@ -32,3 +32,8 @@ void AEnemyBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 }
 
+void AEnemyBase::TakeDamage(float damage) {
+	HitHealth--;
+	Hits++;
+	Health -= damage;
+}
