@@ -49,4 +49,6 @@ protected:
 public:
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 	void TakeDamage(float damage);
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+	bool IsDead();
 };
