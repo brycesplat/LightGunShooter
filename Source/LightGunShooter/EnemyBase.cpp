@@ -37,3 +37,10 @@ void AEnemyBase::TakeDamage(float damage) {
 	Hits++;
 	Health -= damage;
 }
+
+bool AEnemyBase::IsDead(){
+	if(!HitHealth || Health <= 0){
+		return true;
+	} 
+	return false;
+}
