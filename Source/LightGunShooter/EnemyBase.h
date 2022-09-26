@@ -16,6 +16,7 @@ class LIGHTGUNSHOOTER_API AEnemyBase : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AEnemyBase();
+	AEnemyBase(bool HealthBased, bool DropAmmo);
 
 protected:
 	// Called when the game starts or when spawned
@@ -30,25 +31,27 @@ public:
 
 protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	float Health;
+		float Health;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	int HitHealth;
+		int HitHealth;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	int Hits;
+		int Hits;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	float AttackChance;
+		float AttackChance;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TMap<FString, int> Drops;
+		TMap<FString, int> Drops;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TMap<int, FString> DropPosition;
+		TMap<int, FString> DropPosition;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	bool CanDropAmmo;
+		bool CanDropAmmo;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	bool healthBased;
+		bool HealthBased;
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
-	void TakeDamage(float damage);
+		void TakeDamage(float damage);
+	UFUNCTION(BlueprintPure, Category = "Mechanics")
+		bool IsDead();
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
-	bool IsDead();
+		bool TakeDamageAndDie(float damage);
 };

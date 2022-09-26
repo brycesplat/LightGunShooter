@@ -11,6 +11,12 @@ AEnemyBase::AEnemyBase()
 
 }
 
+AEnemyBase::AEnemyBase(bool HealthBased, bool DropAmmo) {
+	PrimaryActorTick.bCanEverTick = true;
+	this->HealthBased = HealthBased;
+	CanDropAmmo = DropAmmo;
+}
+
 // Called when the game starts or when spawned
 void AEnemyBase::BeginPlay()
 {
@@ -39,8 +45,14 @@ void AEnemyBase::TakeDamage(float damage) {
 }
 
 bool AEnemyBase::IsDead(){
-	if(!HitHealth || Health <= 0){
+	if((HitHealth <= 0 && !HealthBased)
+		|| (Health <= 0 && HealthBased)){
 		return true;
 	} 
 	return false;
+}
+
+bool AEnemyBase::TakeDamageAndDie(float damage) {
+	TakeDamage(damage);
+	return IsDead();
 }
