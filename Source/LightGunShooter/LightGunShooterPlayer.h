@@ -38,6 +38,8 @@ protected:
 	TMap<int, FString> GunList;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	int CurrentGun;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool InCover;
 
 protected:
 	UPROPERTY(EditAnywhere)
