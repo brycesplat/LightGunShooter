@@ -43,9 +43,13 @@ protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		TMap<int, FString> DropPosition;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		uint8 DropNum;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool CanDropAmmo;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool HealthBased;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		bool IsDead;
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
