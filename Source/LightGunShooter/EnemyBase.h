@@ -48,8 +48,6 @@ protected:
 		bool CanDropAmmo;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool HealthBased;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		bool IsDead;
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
