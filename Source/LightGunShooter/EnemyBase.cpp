@@ -56,3 +56,12 @@ bool AEnemyBase::TakeDamageAndDie(float damage) {
 	TakeDamage(damage);
 	return IsDead();
 }
+
+void AEnemyBase::RefillPlayerAmmo(ALightGunShooterPlayer PlayerCharacter) {
+	if (!DropPosition.Contains(DropNum)) {
+		CanDropAmmo = false;
+		return;
+	}
+	FString* gunName = DropPosition.Find(DropNum);
+	PlayerCharacter.Refill(*gunName, *Drops.Find(*gunName));
+}

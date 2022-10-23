@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "LightGunShooter_GunBase.h"
+#include "LightGunShooterPlayer.h"
 #include "EnemyBase.generated.h"
 
 
@@ -56,4 +57,6 @@ public:
 		bool IsDead();
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 		bool TakeDamageAndDie(float damage);
+	UFUNCTION(BlueprintCallable, Category = "Mechanics")
+		void RefillPlayerAmmo(ALightGunShooterPlayer PlayerCharacter);
 };
