@@ -9,11 +9,26 @@
 #include "LightGunShooter_GunBase.h"
 #include "LightGunShooterPlayer.generated.h"
 
+class UInputComponent;
+class UInputAction;
+class UInputMappingContext;
+
 UCLASS()
 class LIGHTGUNSHOOTER_API ALightGunShooterPlayer : public APawn
 {
 	GENERATED_BODY()
 
+	/** Shoot Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* ShootAction;
+
+	/** Reload Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* ReloadAction;
+
+	/** Cover Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* CoverAction;
 public:
 	// Sets default values for this pawn's properties
 	ALightGunShooterPlayer();
