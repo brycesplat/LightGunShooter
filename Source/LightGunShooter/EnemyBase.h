@@ -52,11 +52,11 @@ protected:
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
-		void TakeDamage(float damage);
+		void TakeDamageTest(float damage);
 	UFUNCTION(BlueprintPure, Category = "Mechanics")
 		bool IsDead();
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 		bool TakeDamageAndDie(float damage);
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
-		void RefillPlayerAmmo(ALightGunShooterPlayer PlayerCharacter);
+		void RefillPlayerAmmo(ALightGunShooterPlayer* PlayerCharacter);
 };
