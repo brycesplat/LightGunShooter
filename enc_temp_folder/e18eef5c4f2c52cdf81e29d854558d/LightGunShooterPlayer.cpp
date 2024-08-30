@@ -40,11 +40,9 @@ void ALightGunShooterPlayer::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 }
 
-bool ALightGunShooterPlayer::ShootFromScreenPosition(FVector2D Position, ETraceTypeQuery TraceChannel, bool bTraceComplex, FHitResult& Result) 
-{
+bool ALightGunShooterPlayer::ShootFromScreenPosition(FVector2D Position, ETraceTypeQuery TraceChannel, bool bTraceComplex, FHitResult& Result) {
 	APlayerController* ctrl = ALightGunShooterPlayer::GetController<APlayerController>();
-	if (ctrl == nullptr) 
-	{
+	if (ctrl == nullptr) {
 		return false;
 	}
 	double mX, mY;
@@ -55,27 +53,23 @@ bool ALightGunShooterPlayer::ShootFromScreenPosition(FVector2D Position, ETraceT
 	bHit = ctrl->GetHitResultAtScreenPosition(Position, TraceChannel, bTraceComplex, Result);
 	
 
-	if (!bHit) 
-	{
+	if (!bHit) {
 		Result = FHitResult();
 	}
 	return bHit;
 }
 
-void ALightGunShooterPlayer::Refill(FString Key, int Ammo) 
-{
+void ALightGunShooterPlayer::Refill(FString Key, int Ammo) {
 	(**(Guns.Find(Key))).ReserveAmmo += Ammo;
 }
 
 
-int ALightGunShooterPlayer::DamageHealth(uint8 Damage) 
-{
+int ALightGunShooterPlayer::DamageHealth(uint8 Damage) {
 	Health -= Damage;
 	return Health;
 }
 
-void ALightGunShooterPlayer::AddHealth(uint8 Heal) 
-{
+void ALightGunShooterPlayer::AddHealth(uint8 Heal) {
 	if (Health + Heal > 255) {
 		Health = 255;
 		return;
@@ -83,10 +77,8 @@ void ALightGunShooterPlayer::AddHealth(uint8 Heal)
 	Health += Heal;
 }
 
-void ALightGunShooterPlayer::EquipNewGun(ALightGunShooter_GunBase* NewGun) 
-{
-	if (NewGun == nullptr) 
-	{
+void ALightGunShooterPlayer::EquipNewGun(ALightGunShooter_GunBase* NewGun) {
+	if (NewGun == nullptr) {
 		return;
 	}
 	Guns.Add(NewGun->Key, NewGun);
@@ -94,10 +86,8 @@ void ALightGunShooterPlayer::EquipNewGun(ALightGunShooter_GunBase* NewGun)
 	CurrentGun = 1;
 }
 
-void ALightGunShooterPlayer::EquipOldGun() 
-{
-	if (CurrentGun == 0) 
-	{
+void ALightGunShooterPlayer::EquipOldGun() {
+	if (CurrentGun == 0) {
 		return;
 	}
 	
@@ -106,30 +96,24 @@ void ALightGunShooterPlayer::EquipOldGun()
 	CurrentGun = 0;
 }
 
-void ALightGunShooterPlayer::SwapGuns(int NewGun) 
-{
-	if (!GunList.Contains(NewGun)) 
-	{
+void ALightGunShooterPlayer::SwapGuns(int NewGun) {
+	if (!GunList.Contains(NewGun)) {
 		return;
 	}
 	CurrentGun = NewGun;
 }
 
-void ALightGunShooterPlayer::SwapUpGuns() 
-{
-	if (!GunList.Contains(++CurrentGun)) 
-	{
+void ALightGunShooterPlayer::SwapUpGuns() {
+	if (!GunList.Contains(++CurrentGun)) {
 		CurrentGun = 0;
 	}
 }
 
-ALightGunShooter_GunBase* ALightGunShooterPlayer::GetCurrentGun() 
-{
+ALightGunShooter_GunBase* ALightGunShooterPlayer::GetCurrentGun() {
 	return (Guns[GunList[CurrentGun]]);
 }
 
-void ALightGunShooterPlayer::AddGunToList(TSubclassOf<ALightGunShooter_GunBase> Gun) 
-{
+void ALightGunShooterPlayer::AddGunToList(TSubclassOf<ALightGunShooter_GunBase> Gun) {
 	FActorSpawnParameters ActorSpawnParams;
 	ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	ActorSpawnParams.Owner = this;
