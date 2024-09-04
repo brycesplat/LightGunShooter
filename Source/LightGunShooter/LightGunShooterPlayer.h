@@ -55,6 +55,8 @@ protected:
 	int CurrentGun;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool InCover;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool IsTraversing;
 
 protected:
 	UPROPERTY(EditAnywhere)

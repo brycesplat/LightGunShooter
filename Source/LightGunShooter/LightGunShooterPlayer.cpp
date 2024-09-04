@@ -17,6 +17,7 @@ ALightGunShooterPlayer::ALightGunShooterPlayer()
 
 	Health = 3;
 	CurrentGun = 0;
+	IsTraversing = false;
 }
 
 // Called when the game starts or when spawned
