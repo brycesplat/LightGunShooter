@@ -19,6 +19,10 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool Automatic;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool IsRandomShots;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int NumOfShots;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	int CurrentAmmo;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	int MaxClipCount;

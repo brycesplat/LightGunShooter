@@ -9,6 +9,8 @@ ALightGunShooter_GunBase::ALightGunShooter_GunBase()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	Position.Add(FVector2D{ 0.0, 0.0 });
+	IsRandomShots = false;
+	NumOfShots = 1;
 }
 
 // Called when the game starts or when spawned
