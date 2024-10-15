@@ -49,6 +49,8 @@ protected:
 		bool CanDropAmmo;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		bool HealthBased;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		float FireHitChance;
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
