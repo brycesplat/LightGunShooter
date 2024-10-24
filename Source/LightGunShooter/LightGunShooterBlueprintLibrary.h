@@ -15,12 +15,6 @@ class LIGHTGUNSHOOTER_API ULightGunShooterBlueprintLibrary : public UBlueprintFu
 	GENERATED_BODY()
 	
 public:
-	struct WeaponDetails
-	{
-		TArray<FVector2D> Modifier = {FVector2D(0.0,0.0)};
-		float Damage;
-		uint8 ClipSize;
-		uint32 MaxAmmoCount;
-		uint32 CurrentAmmoCount;
-	};
+	UFUNCTION(BlueprintPure, Category = "Mechanics|Extra")
+		static float MissBulletRandomNumber(float Lower, float Higher);
 };
