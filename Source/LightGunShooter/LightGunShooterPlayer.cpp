@@ -2,6 +2,7 @@
 
 
 #include "LightGunShooterPlayer.h"
+#include "LightGunShooter_GunBase.h"
 
 // Sets default values
 ALightGunShooterPlayer::ALightGunShooterPlayer()
