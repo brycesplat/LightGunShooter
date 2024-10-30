@@ -13,7 +13,7 @@ AEnemyBase::AEnemyBase()
 
 AEnemyBase::AEnemyBase(bool HealthBased, bool DropAmmo) {
 	PrimaryActorTick.bCanEverTick = true;
-	this->HealthBased = HealthBased;
+	this->IsHealthBased = HealthBased;
 	CanDropAmmo = DropAmmo;
 }
 
@@ -45,8 +45,8 @@ void AEnemyBase::TakeDamageTest(float damage) {
 }
 
 bool AEnemyBase::IsDead(){
-	if((HitHealth <= 0 && !HealthBased)
-		|| (Health <= 0 && HealthBased)){
+	if((HitHealth <= 0 && !IsHealthBased)
+		|| (Health <= 0 && IsHealthBased)){
 		return true;
 	} 
 	return false;

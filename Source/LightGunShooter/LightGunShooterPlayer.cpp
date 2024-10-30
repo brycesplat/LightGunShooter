@@ -72,7 +72,14 @@ void ALightGunShooterPlayer::Refill(FString Key, int Ammo)
 
 int ALightGunShooterPlayer::DamageHealth(uint8 Damage) 
 {
-	Health -= Damage;
+	if (Health - Damage <= 0)
+	{
+		Health = 0;
+	}
+	else
+	{
+		Health -= Damage;
+	}
 	return Health;
 }
 

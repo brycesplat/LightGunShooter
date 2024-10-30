@@ -23,7 +23,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -32,31 +32,45 @@ public:
 
 protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		float Health;
+	float Health;
+
+	/* How many hits the enemy can take before dying. */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		int HitHealth;
+	int HitHealth;
+
+	/* Number of hits taken from the player(s). */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		int Hits;
+	int Hits;
+
+	/* Percent chance that a bullet coming out is dangerous (0.0 - 1.0). */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		float AttackChance;
+	float AttackChance;
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		TMap<FString, int> Drops;
+	TMap<FString, int> Drops;
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		TMap<int, FString> DropPosition;
+	TMap<int, FString> DropPosition;
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		bool CanDropAmmo;
+	bool CanDropAmmo;
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		bool HealthBased;
+	bool IsHealthBased;
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		float FireHitChance;
+	float FireHitChance;
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
-		void TakeDamageTest(float damage);
+	void TakeDamageTest(float damage);
+
 	UFUNCTION(BlueprintPure, Category = "Mechanics")
-		bool IsDead();
+	bool IsDead();
+
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
-		bool TakeDamageAndDie(float damage);
+	bool TakeDamageAndDie(float damage);
+
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
-		void RefillPlayerAmmo(ALightGunShooterPlayer* PlayerCharacter);
+	void RefillPlayerAmmo(ALightGunShooterPlayer* PlayerCharacter);
 };

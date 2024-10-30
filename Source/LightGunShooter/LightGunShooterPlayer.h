@@ -72,15 +72,19 @@ protected:
 		class USphereComponent* Hitbox;
 
 public:
+	/* A player controller function that can be called from the pawn. */
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 	bool ShootFromScreenPosition(FVector2D Position, ETraceTypeQuery TraceChannel, bool bTraceComplex, FHitResult& Hit);
 
+	/* Refills the Key weapon's ammo. */
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 	void Refill(FString Key, int Ammo);
 
+	/* Makes the pawn take damage. */
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 	int DamageHealth(uint8 Damage);
 
+	/* Heals the pawn's health. */
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
 	void AddHealth(uint8 Heal);
 
