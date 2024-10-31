@@ -58,12 +58,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool IsHealthBased;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	float FireHitChance;
-
 public:
 	UFUNCTION(BlueprintCallable, Category = "Mechanics")
-	void TakeDamageTest(float damage);
+	void TakeDamage(float damage);
 
 	UFUNCTION(BlueprintPure, Category = "Mechanics")
 	bool IsDead();

@@ -38,7 +38,7 @@ void AEnemyBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 }
 
-void AEnemyBase::TakeDamageTest(float damage) {
+void AEnemyBase::TakeDamage(float damage) {
 	HitHealth--;
 	Hits++;
 	Health -= damage;
@@ -53,15 +53,14 @@ bool AEnemyBase::IsDead(){
 }
 
 bool AEnemyBase::TakeDamageAndDie(float damage) {
-	this->TakeDamageTest(damage);
+	this->TakeDamage(damage);
 	return this->IsDead();
 }
 
 void AEnemyBase::RefillPlayerAmmo(ALightGunShooterPlayer* PlayerCharacter) {
 	FString* gunName = DropPosition.Find(Hits);
-	if (gunName->IsEmpty())
+	if (gunName)
 	{
-		return;
+		PlayerCharacter->Refill(*gunName, *Drops.Find(*gunName));
 	}
-	PlayerCharacter->Refill(*gunName, *Drops.Find(*gunName));
 }
