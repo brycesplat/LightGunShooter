@@ -33,7 +33,11 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float RateOfFire;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool IsRadiusShot;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<FVector2D> Position {FVector2D {0,0}};
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float MaxRadius;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	FString Key;
 
