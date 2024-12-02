@@ -3,7 +3,7 @@
 
 #include "LightGunShooterBlueprintLibrary.h"
 
-float ULightGunShooterBlueprintLibrary::MissBulletRandomNumber(float Lower, float Higher)
+float ULightGunShooterBlueprintLibrary::MissBulletRandomNumber(float Pitch, float Yaw)
 {
 	int choice = FMath::RandRange(0, 1);
 	float deviation = 0.0f;
@@ -11,15 +11,15 @@ float ULightGunShooterBlueprintLibrary::MissBulletRandomNumber(float Lower, floa
 	switch (choice)
 	{ 
 	case 0:
-		deviation = FMath::RandRange(Lower, Higher);
+		deviation = FMath::RandRange(Pitch, Yaw);
 		break;
 	case 1:
-		Lower *= -1;
-		Higher *= -1;
-		deviation = FMath::RandRange(Lower, Higher);
+		Pitch *= -1;
+		Yaw *= -1;
+		deviation = FMath::RandRange(Pitch, Yaw);
 		break;
 	default:
-		deviation = FMath::RandRange(Lower, Higher);
+		deviation = FMath::RandRange(Pitch, Yaw);
 		break;
 	}
 

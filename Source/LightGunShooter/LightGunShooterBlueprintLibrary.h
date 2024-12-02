@@ -16,5 +16,5 @@ class LIGHTGUNSHOOTER_API ULightGunShooterBlueprintLibrary : public UBlueprintFu
 	
 public:
 	UFUNCTION(BlueprintPure, Category = "Mechanics|Extra")
-		static float MissBulletRandomNumber(float Lower, float Higher);
+		static float MissBulletRandomNumber(float Pitch, float Yaw);
 };
