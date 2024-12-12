@@ -15,6 +15,11 @@ class LIGHTGUNSHOOTER_API ULightGunShooterBlueprintLibrary : public UBlueprintFu
 	GENERATED_BODY()
 	
 public:
-	UFUNCTION(BlueprintPure, Category = "Mechanics|Extra")
-		static float MissBulletRandomNumber(float Pitch, float Yaw);
+	UFUNCTION(BlueprintCallable, Category = "Mechanics|Extra")
+	static void MissBulletRandomNumber(float Pitch, float Yaw, float Deviation, float SafeRange, float& ReturnPitch, float& ReturnYaw);
+
+	/*
+	UFUNCTION(BlueprintCallable, Category = "Mechanics|Extra")
+	static void InitializeUINavigationConfig();
+	*/
 };

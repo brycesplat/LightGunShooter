@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Camera/CameraComponent.h"
-#include <Components/SphereComponent.h>
+#include "Components/SphereComponent.h"
 #include "LightGunShooter_GunBase.h"
 #include "LightGunShooterPlayer.generated.h"
 

@@ -2,26 +2,38 @@
 
 
 #include "LightGunShooterBlueprintLibrary.h"
+#include "Framework/Application/NavigationConfig.h"
+#include "Framework/Application/SlateApplication.h"
 
-float ULightGunShooterBlueprintLibrary::MissBulletRandomNumber(float Pitch, float Yaw)
+void ULightGunShooterBlueprintLibrary::MissBulletRandomNumber(float Pitch, float Yaw, float Deviation, float SafeRange, float& ReturnPitch, float& ReturnYaw)
 {
-	int choice = FMath::RandRange(0, 1);
-	float deviation = 0.0f;
+	float pitchDev = FMath::FRandRange(-Deviation, Deviation);
+	ReturnPitch = Pitch + pitchDev;
 
-	switch (choice)
-	{ 
-	case 0:
-		deviation = FMath::RandRange(Pitch, Yaw);
-		break;
-	case 1:
-		Pitch *= -1;
-		Yaw *= -1;
-		deviation = FMath::RandRange(Pitch, Yaw);
-		break;
-	default:
-		deviation = FMath::RandRange(Pitch, Yaw);
-		break;
+	if (pitchDev >= -SafeRange && pitchDev <= SafeRange)
+	{	
+		int choice = FMath::RandRange(0, 1);
+		switch (choice)
+		{
+		case 0:
+			ReturnYaw = Yaw + FMath::FRandRange(-Deviation, -SafeRange);
+			return;
+		case 1:
+			ReturnYaw = Yaw + FMath::FRandRange(SafeRange, Deviation);
+			return;
+			break;
+		}
 	}
 
-	return deviation;
+	ReturnYaw = Yaw + FMath::FRandRange(-Deviation, Deviation);
 }
+
+/*
+void ULightGunShooterBlueprintLibrary::InitializeUINavigationConfig()
+{
+	const auto& SlateApp = FSlateApplication::Get();
+	const auto Config = SlateApp.GetNavigationConfig();
+	// In our game we want space bar to be used to go back.
+	Config->KeyActionRules.Remove(EKeys::SpaceBar);
+}
+*/
