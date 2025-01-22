@@ -27,13 +27,3 @@ void ULightGunShooterBlueprintLibrary::MissBulletRandomNumber(float Pitch, float
 
 	ReturnYaw = Yaw + FMath::FRandRange(-Deviation, Deviation);
 }
-
-/*
-void ULightGunShooterBlueprintLibrary::InitializeUINavigationConfig()
-{
-	const auto& SlateApp = FSlateApplication::Get();
-	const auto Config = SlateApp.GetNavigationConfig();
-	// In our game we want space bar to be used to go back.
-	Config->KeyActionRules.Remove(EKeys::SpaceBar);
-}
-*/
